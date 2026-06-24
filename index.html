@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lazy Beds | Organic Mattresses Seattle</title>
+  <!-- Favicon for all pages -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <!-- Bootstrap 5 + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #FDFBF7;
+      color: #3D3A36;
+      overflow-x: hidden;
+    }
+    :root {
+      --clay: #C67C4E;
+      --moss: #5F7B5E;
+      --sand: #E8DCC6;
+      --deep-forest: #2C4B3A;
+      --warm-light: #FFF8EF;
+      --shadow-soft: 0 25px 45px -12px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.02);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+    .navbar-custom {
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--deep-forest) !important;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #5B5A56 !important;
+      margin: 0 0.3rem;
+      border-radius: 40px;
+      transition: var(--transition-bounce);
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--clay);
+      color: white !important;
+      transform: scale(1.02);
+    }
+    .btn-mattress {
+      background: var(--moss);
+      color: white;
+      border-radius: 60px;
+      padding: 10px 28px;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition-bounce);
+    }
+    .btn-mattress:hover {
+      background: var(--deep-forest);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -12px var(--moss);
+    }
+    .btn-outline-mattress {
+      border: 2px solid var(--moss);
+      background: transparent;
+      border-radius: 60px;
+      color: var(--moss);
+      font-weight: 600;
+      transition: var(--transition-bounce);
+    }
+    .btn-outline-mattress:hover {
+      background: var(--moss);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .hero-new {
+      background: linear-gradient(135deg, #F4EDE0 0%, #FFF5E9 100%);
+      border-radius: 0 0 80px 80px;
+      padding: 3rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-new::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 140%;
+      background: radial-gradient(circle, rgba(198,124,78,0.08) 0%, rgba(95,123,94,0.02) 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .hero-title-new {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      color: var(--deep-forest);
+      animation: fadeSlide 0.8s ease;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateX(-20px);}
+      100% { opacity: 1; transform: translateX(0);}
+    }
+    .hero-img-new {
+      border-radius: 48px;
+      box-shadow: var(--shadow-soft);
+      transform: rotate(2deg);
+      transition: transform 0.4s;
+    }
+    .bed-card {
+      background: white;
+      border-radius: 48px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-bounce);
+      border: 1px solid #f0e5d8;
+      height: 100%;
+    }
+    .bed-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 45px -20px rgba(0,0,0,0.15);
+    }
+    .bed-img {
+      height: 260px;
+      object-fit: cover;
+      width: 100%;
+      transition: transform 0.6s;
+    }
+    .bed-card:hover .bed-img {
+      transform: scale(1.03);
+    }
+    .category-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: var(--shadow-soft);
+    }
+    .category-card i {
+      font-size: 2.5rem;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .offer-zone {
+      background: linear-gradient(115deg, var(--deep-forest) 0%, #3a5c3e 100%);
+      border-radius: 60px;
+      padding: 2.5rem;
+      color: white;
+    }
+    .section-title-organic {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title-organic:after {
+      content: '~~~';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: var(--clay);
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+    }
+    .why-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      height: 100%;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--sand);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--clay);
+    }
+    footer a {
+      text-decoration: none !important;
+      color: #D4D8C8;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .hero-title-new { font-size: 2.2rem; }
+      .section-title-organic { font-size: 1.8rem; }
+      .navbar-custom { margin: 0 0.5rem; padding: 0.5rem 1rem; }
+      .offer-zone { padding: 1.5rem; }
+      .benefit-item { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (only Home, About, Contact, Shop + Cart) -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="/"><i class="fas fa-feather-alt me-2" style="color: #C67C4E;"></i>Lazy Beds</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navOrganic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navOrganic">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-mattress btn-sm rounded-pill"><i class="fas fa-cart-shopping me-1"></i> Cart <span id="cartCountUnique" class="badge bg-dark text-white ms-1">0</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- HERO BANNER -->
+<section class="hero-new">
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill mb-3"><i class="fas fa-leaf me-1"></i> Handcrafted in USA</span>
+        <h1 class="hero-title-new">Wake to the<br>Whisper of Nature</h1>
+        <p class="lead mt-3">Organic latex, GOTS cotton, and upcycled wool — handcrafted in Seattle. The purest sleep you’ve ever known.</p>
+        <div class="mt-4">
+          <a href="shop.html" class="btn btn-mattress me-3">Shop Collection →</a>
+          <a href="contact.html" class="btn btn-outline-mattress">100-Night Trial</a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&auto=format" class="img-fluid hero-img-new" alt="organic mattress" style="max-height: 380px; width: auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US SECTION -->
+<div class="container py-5 my-4">
+  <div class="row align-items-center g-5">
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1688384452844-8364c3e2fc28?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-5 shadow" alt="workshop seattle">
+    </div>
+    <div class="col-md-6">
+      <span class="badge bg-warning bg-opacity-15 text-dark px-3 py-2 rounded-pill mb-3"><i class="fas fa-tree"></i> Rooted in Seattle</span>
+      <h2 class="fw-bold" style="font-family: 'DM Serif Display', serif;">From our forest to your bedroom</h2>
+      <p class="mt-3">Lazy Beds was born in the emerald heart of Seattle, WA. We handcraft each mattress using locally sourced organic wool, sustainable latex from hevea trees, and recycled cotton. No synthetic foams, no chemical adhesives — just pure, breathable comfort. We're a B Corp candidate and carbon-negative since day one.</p>
+      <a href="about.html" class="btn btn-outline-mattress mt-2">Meet the Makers →</a>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title-organic">Why Seattle Trusts Us</h2>
+    <p class="mt-4">4 reasons to sleep naturally</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="why-card">
+        <i class="fas fa-certificate fa-3x" style="color: var(--clay); margin-bottom: 1rem;"></i>
+        <h5>Certified Organic</h5>
+        <p class="small">GOTS & GOLS certified — no greenwashing.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="why-card">
+        <i class="fas fa-hand-holding-heart fa-3x" style="color: var(--clay); margin-bottom: 1rem;"></i>
+        <h5>Handmade in USA</h5>
+        <p class="small">Seattle workshop, living wages, local materials.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="why-card">
+        <i class="fas fa-moon fa-3x" style="color: var(--clay); margin-bottom: 1rem;"></i>
+        <h5>100-Night Trial</h5>
+        <p class="small">Sleep on it. Don't love it? Full refund.</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="why-card">
+        <i class="fas fa-leaf fa-3x" style="color: var(--clay); margin-bottom: 1rem;"></i>
+        <h5>Carbon Negative</h5>
+        <p class="small">We offset 120% of our emissions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY SECTION -->
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title-organic">Shop by Comfort</h2>
+    <p class="mt-4">Find your perfect firmness</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="category-card">
+        <i class="fas fa-cloud-moon"></i>
+        <h5>Plush Soft</h5>
+        <p>Cloud-like comfort for side sleepers</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="category-card">
+        <i class="fas fa-balance-scale"></i>
+        <h5>Medium (Best Seller)</h5>
+        <p>Balanced support for all positions</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="category-card">
+        <i class="fas fa-mountain"></i>
+        <h5>Firm</h5>
+        <p>Extra lumbar support, back sleepers</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOST SELLING PRODUCTS -->
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title-organic">Most Loved by Seattle</h2>
+    <p class="mt-4">Our community’s top picks</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format" class="bed-img" alt="Evergreen Hybrid">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">Evergreen Hybrid</h5><span class="text-moss fw-bold">$1,199</span></div>
+          <p class="small text-secondary">Organic latex + pocket coils</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m4" data-name="Evergreen Hybrid" data-price="1199" data-img="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format" class="bed-img" alt="Rainier Plush">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">Rainier Plush</h5><span class="fw-bold">$1,399</span></div>
+          <p class="small text-secondary">Alpaca wool + cashmere blend</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m5" data-name="Rainier Plush" data-price="1399" data-img="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1688384452551-5cacc39946e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="Olympic Firm">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">Olympic Firm</h5><span class="fw-bold">$1,099</span></div>
+          <p class="small text-secondary">Hemp cover + recycled coils</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m6" data-name="Olympic Firm" data-price="1099" data-img="https://images.unsplash.com/photo-1532372576444-dda954194ad9?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ECO-LUXURY COLLECTION (additional product section) -->
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title-organic">Eco-Luxury Collection</h2>
+    <p class="mt-4">Premium materials, elevated comfort</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format" class="bed-img" alt="The Sanctuary">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">The Sanctuary</h5><span class="text-moss fw-bold">$1,899</span></div>
+          <p class="small text-secondary">Organic cashmere + silk blend, hand-tufted</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m7" data-name="The Sanctuary" data-price="1899" data-img="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1613688684609-f93cb0f5f73e?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="The Cloud">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">The Cloud</h5><span class="fw-bold">$1,599</span></div>
+          <p class="small text-secondary">GOTS organic latex + wool topper</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m8" data-name="The Cloud" data-price="1599" data-img="https://images.unsplash.com/photo-1613688684609-f93cb0f5f73e?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1654064550858-c62b971a378a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="The Forest">
+        <div class="p-4">
+          <div class="d-flex justify-content-between"><h5 class="fw-bold">The Forest</h5><span class="fw-bold">$1,299</span></div>
+          <p class="small text-secondary">Recycled steel coils + hemp cover</p>
+          <button class="btn btn-mattress w-100 mt-2 addMattressBtn" data-id="m9" data-name="The Forest" data-price="1299" data-img="https://images.unsplash.com/photo-1654064550858-c62b971a378a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLEEP BENEFITS SECTION -->
+<div class="container py-5">
+  <div class="row align-items-center g-5">
+    <div class="col-md-6">
+      <h2 class="section-title-organic mb-4" style="display: inline-block;">Benefits of Organic Sleep</h2>
+      <div class="mt-4">
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fas fa-lungs"></i></div>
+          <div><strong>Breathe Easy</strong><br>No VOCs, no off-gassing — hypoallergenic materials.</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fas fa-thermometer-half"></i></div>
+          <div><strong>Temperature Regulating</strong><br>Natural wool & cotton wick moisture away.</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fas fa-spine"></i></div>
+          <div><strong>Spinal Alignment</strong><br>Zoned support from natural latex.</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+          <div><strong>Planet Positive</strong><br>Biodegradable materials, zero plastic.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1632829401795-2745c905ac77?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid rounded-5 shadow" alt="sleep benefits">
+    </div>
+  </div>
+</div>
+
+<!-- OFFER ZONE SECTION -->
+<div class="container py-4">
+  <div class="offer-zone text-center">
+    <i class="fas fa-gift fa-3x mb-3"></i>
+    <h2 class="fw-bold">Spring Renewal Offer</h2>
+    <p class="lead">Up to $300 off + free organic pillows (set of 2). Use code: <strong class="bg-white text-dark px-3 py-1 rounded-pill">GROVE300</strong></p>
+    <p class="small mt-2">Valid for USA orders only. Ends April 30, 2026.</p>
+    <a href="shop.html" class="btn btn-light rounded-pill px-4 mt-2">Claim Offer →</a>
+  </div>
+</div>
+
+<!-- TESTIMONIAL + ECO PLEDGE -->
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="bg-white rounded-4 p-4 shadow-sm h-100">
+        <i class="fas fa-quote-left fa-2x text-clay mb-3" style="color: var(--clay);"></i>
+        <p class="fs-5">“I’ve never slept better. The Evergreen Hybrid fixed my back pain and I love that it’s plastic-free.”</p>
+        <div class="fw-bold">— Michael, Seattle</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-white rounded-4 p-4 shadow-sm h-100" style="background: var(--sand);">
+        <i class="fas fa-globe-americas fa-2x mb-3" style="color: var(--deep-forest);"></i>
+        <h5>Our Promise</h5>
+        <p>Every mattress sold plants 5 trees in the Pacific Northwest. We've restored over 12 acres of forest.</p>
+        <a href="#" class="small text-reset fw-bold">See our impact →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ ACCORDION -->
+<div class="container py-4">
+  <div class="text-center mb-4">
+    <h2 class="section-title-organic">Dream Answers</h2>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="accordion" id="faqOrganic">
+        <div class="accordion-item border-0 shadow-sm mb-2 rounded-4">
+          <h2 class="accordion-header"><button class="accordion-button rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">Is the mattress truly organic?</button></h2>
+          <div id="faq1" class="accordion-collapse collapse show"><div class="accordion-body">100% — GOTS organic cotton, GOLS certified latex, and OEKO-TEX wool. No fiberglass, no flame retardants.</div></div>
+        </div>
+        <div class="accordion-item border-0 shadow-sm mb-2 rounded-4">
+          <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Do you offer free shipping?</button></h2>
+          <div id="faq2" class="accordion-collapse collapse"><div class="accordion-body">Yes — free shipping to the contiguous US. Seattle locals can pick up from our workshop.</div></div>
+        </div>
+        <div class="accordion-item border-0 shadow-sm mb-2 rounded-4">
+          <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">What about returns?</button></h2>
+          <div id="faq3" class="accordion-collapse collapse"><div class="accordion-body">100-night risk-free trial. We'll arrange free pickup and full refund if you're not satisfied.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER (Seattle address, no underlines) -->
+<footer class="pt-5 pb-4 px-3 mt-5" style="background: #2A3A2A; color: #D4D8C8; border-radius: 40px 40px 0 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h5><i class="fas fa-feather-alt me-2"></i>Lazy Beds</h5>
+        <p class="small">Handcrafted organic mattresses. Made with love in Seattle, WA. Carbon-neutral since 2024.</p>
+        <p class="small mb-0"><i class="fas fa-map-pin me-2"></i> 456 Evergreen Way, Seattle, WA 98101</p>
+        <p class="small"><i class="fas fa-phone-alt me-2"></i> +1 (206) 555-8723</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="returns.html">Returns & Exchanges</a></li>
+          <li><a href="shipping.html">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-white-50">
+    <div class="text-center small">© 2025 Lazy Beds — Pure sleep, pure planet.</div>
+  </div>
+</footer>
+
+<script>
+  function updateCartUI() {
+    let cart = JSON.parse(localStorage.getItem('slumberCart')) || [];
+    let totalQty = cart.reduce((sum, i) => sum + i.quantity, 0);
+    let badge = document.getElementById('cartCountUnique');
+    if (badge) badge.innerText = totalQty;
+  }
+  function addToMattressCart(id, name, price, img) {
+    let cart = JSON.parse(localStorage.getItem('slumberCart')) || [];
+    let existing = cart.findIndex(i => i.id == id);
+    if (existing !== -1) cart[existing].quantity += 1;
+    else cart.push({ id, name, price: parseFloat(price), image: img, quantity: 1 });
+    localStorage.setItem('slumberCart', JSON.stringify(cart));
+    updateCartUI();
+    let toast = document.createElement('div');
+    toast.innerText = `🌿 ${name} added to cart`;
+    toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#5F7B5E; color:white; padding:12px 24px; border-radius:60px; z-index:9999; font-weight:500;';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 1800);
+  }
+  document.querySelectorAll('.addMattressBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      addToMattressCart(this.dataset.id, this.dataset.name, this.dataset.price, this.dataset.img);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

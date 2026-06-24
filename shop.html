@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shop Organic Mattresses | Lazy Beds Seattle</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <!-- Bootstrap + Icons + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #FDFBF7;
+      color: #3D3A36;
+      overflow-x: hidden;
+    }
+    :root {
+      --clay: #C67C4E;
+      --moss: #5F7B5E;
+      --sand: #E8DCC6;
+      --deep-forest: #2C4B3A;
+      --shadow-soft: 0 20px 35px -10px rgba(0,0,0,0.05);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .navbar-custom {
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--deep-forest) !important;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #5B5A56 !important;
+      margin: 0 0.3rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--clay);
+      color: white !important;
+      transform: scale(1.02);
+    }
+    .btn-outline-mattress {
+      border: 2px solid var(--moss);
+      background: transparent;
+      border-radius: 60px;
+      color: var(--moss);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-outline-mattress:hover {
+      background: var(--moss);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-mattress {
+      background: var(--moss);
+      color: white;
+      border-radius: 60px;
+      padding: 8px 20px;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-mattress:hover {
+      background: var(--deep-forest);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px -8px var(--moss);
+    }
+    .bed-card {
+      background: white;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      border: 1px solid #f0e5d8;
+      height: 100%;
+    }
+    .bed-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 40px -18px rgba(0,0,0,0.15);
+    }
+    .bed-img {
+      height: 240px;
+      object-fit: cover;
+      width: 100%;
+      transition: transform 0.6s;
+    }
+    .bed-card:hover .bed-img {
+      transform: scale(1.03);
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+    }
+    footer a {
+      text-decoration: none !important;
+      color: #D4D8C8;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.8rem; }
+      .navbar-custom { margin: 0 0.5rem; padding: 0.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as all pages) -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="/"><i class="fas fa-feather-alt me-2" style="color: #C67C4E;"></i>Lazy Beds</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navOrganic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navOrganic">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-mattress btn-sm rounded-pill"><i class="fas fa-cart-shopping me-1"></i> Cart <span id="cartCountUnique" class="badge bg-dark text-white ms-1">0</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- SHOP HEADER -->
+<div class="container py-5 text-center">
+  <h1 class="display-4 fw-bold" style="font-family: 'DM Serif Display', serif;">Organic Mattresses</h1>
+  <p class="lead mx-auto" style="max-width: 650px;">Handcrafted in Seattle using GOTS-certified cotton, natural latex, and zero synthetic foams.</p>
+</div>
+
+<!-- PRODUCT GRID - 12 MATTRESSES -->
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- Product 1 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format" class="bed-img" alt="Evergreen Hybrid">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Evergreen Hybrid</h6><span class="text-success fw-bold">$1,199</span></div>
+          <p class="small text-secondary">Organic latex + pocket coils</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m1" data-name="Evergreen Hybrid" data-price="1199" data-img="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 2 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format" class="bed-img" alt="Rainier Plush">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Rainier Plush</h6><span class="fw-bold">$1,399</span></div>
+          <p class="small text-secondary">Alpaca wool + cashmere blend</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m2" data-name="Rainier Plush" data-price="1399" data-img="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1688384452551-5cacc39946e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="Olympic Firm">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Olympic Firm</h6><span class="fw-bold">$1,099</span></div>
+          <p class="small text-secondary">Hemp cover + recycled coils</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m3" data-name="Olympic Firm" data-price="1099" data-img="https://images.unsplash.com/photo-1688384452551-5cacc39946e0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 4 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format" class="bed-img" alt="The Sanctuary">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">The Sanctuary</h6><span class="fw-bold">$1,899</span></div>
+          <p class="small text-secondary">Organic cashmere + silk, hand-tufted</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m4" data-name="The Sanctuary" data-price="1899" data-img="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 5 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1654064550858-c62b971a378a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="The Cloud">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">The Cloud</h6><span class="fw-bold">$1,599</span></div>
+          <p class="small text-secondary">GOTS latex + wool topper, medium-plush</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m5" data-name="The Cloud" data-price="1599" data-img="https://images.unsplash.com/photo-1654064550858-c62b971a378a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 6 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1647376036543-f9f543601a1d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="The Forest">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">The Forest</h6><span class="fw-bold">$1,299</span></div>
+          <p class="small text-secondary">Recycled steel coils + hemp cover</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m6" data-name="The Forest" data-price="1299" data-img="https://images.unsplash.com/photo-1647376036543-f9f543601a1d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 7 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&auto=format" class="bed-img" alt="Cascade Latex">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Cascade Latex</h6><span class="fw-bold">$1,449</span></div>
+          <p class="small text-secondary">100% natural Dunlop latex, organic cotton</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m7" data-name="Cascade Latex" data-price="1449" data-img="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 8 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&auto=format" class="bed-img" alt="Puget Sound">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Puget Sound</h6><span class="fw-bold">$1,249</span></div>
+          <p class="small text-secondary">Cooling gel + organic wool, medium</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m8" data-name="Puget Sound" data-price="1249" data-img="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 9 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=500&auto=format" class="bed-img" alt="Tahoma Organic">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Tahoma Organic</h6><span class="fw-bold">$1,099</span></div>
+          <p class="small text-secondary">GOTS cotton, coconut coir, firm support</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m9" data-name="Tahoma Organic" data-price="1099" data-img="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 10 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format" class="bed-img" alt="Evergreen Luxe">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Evergreen Luxe</h6><span class="fw-bold">$1,599</span></div>
+          <p class="small text-secondary">Organic latex + cashmere pillow top</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m10" data-name="Evergreen Luxe" data-price="1599" data-img="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 11 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1613688684609-f93cb0f5f73e?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="bed-img" alt="Bainbridge">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">Bainbridge</h6><span class="fw-bold">$1,199</span></div>
+          <p class="small text-secondary">Recycled steel + organic cotton, medium-firm</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m11" data-name="Bainbridge" data-price="1199" data-img="https://images.unsplash.com/photo-1613688684609-f93cb0f5f73e?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Product 12 -->
+    <div class="col-md-4 col-lg-3">
+      <div class="bed-card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format" class="bed-img" alt="The Haven">
+        <div class="p-3">
+          <div class="d-flex justify-content-between"><h6 class="fw-bold">The Haven</h6><span class="fw-bold">$1,799</span></div>
+          <p class="small text-secondary">Alpaca wool + Talalay latex, plush</p>
+          <button class="btn btn-mattress w-100 mt-1 add-btn" data-id="m12" data-name="The Haven" data-price="1799" data-img="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&auto=format">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUSTAINABLE PROMISE BANNER -->
+<div class="container my-5">
+  <div class="bg-white rounded-5 p-4 text-center shadow-sm" style="background: var(--sand);">
+    <i class="fas fa-seedling fa-2x mb-2" style="color: var(--deep-forest);"></i>
+    <h4>Every mattress plants 5 trees in the Pacific Northwest</h4>
+    <p class="mb-0">+ free shipping & 100-night trial on all orders.</p>
+  </div>
+</div>
+
+<!-- FOOTER (identical) -->
+<footer class="pt-5 pb-4 px-3 mt-5" style="background: #2A3A2A; color: #D4D8C8; border-radius: 40px 40px 0 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h5><i class="fas fa-feather-alt me-2"></i>Lazy Beds</h5>
+        <p class="small">Handcrafted organic mattresses. Made with love in Seattle, WA. Carbon-neutral since 2024.</p>
+        <p class="small mb-0"><i class="fas fa-map-pin me-2"></i> 456 Evergreen Way, Seattle, WA 98101</p>
+        <p class="small"><i class="fas fa-phone-alt me-2"></i> +1 (206) 555-8723</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="returns.html">Returns & Exchanges</a></li>
+          <li><a href="shipping.html">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-white-50">
+    <div class="text-center small">© 2025 Lazy Beds — Pure sleep, pure planet.</div>
+  </div>
+</footer>
+
+<!-- CART SCRIPT -->
+<script>
+  function updateCartUI() {
+    let cart = JSON.parse(localStorage.getItem('slumberCart')) || [];
+    let totalQty = cart.reduce((sum, i) => sum + i.quantity, 0);
+    let badge = document.getElementById('cartCountUnique');
+    if (badge) badge.innerText = totalQty;
+  }
+
+  function addToCart(id, name, price, img) {
+    let cart = JSON.parse(localStorage.getItem('slumberCart')) || [];
+    let existing = cart.findIndex(i => i.id == id);
+    if (existing !== -1) cart[existing].quantity += 1;
+    else cart.push({ id, name, price: parseFloat(price), image: img, quantity: 1 });
+    localStorage.setItem('slumberCart', JSON.stringify(cart));
+    updateCartUI();
+    let toast = document.createElement('div');
+    toast.innerText = `🌿 ${name} added to cart`;
+    toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#5F7B5E; color:white; padding:12px 24px; border-radius:60px; z-index:9999; font-weight:500;';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 1800);
+  }
+
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      addToCart(this.dataset.id, this.dataset.name, this.dataset.price, this.dataset.img);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', updateCartUI);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

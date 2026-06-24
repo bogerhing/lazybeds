@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shopping Cart | Lazy Beds Organic Mattresses</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <!-- Bootstrap + Icons + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #F9F6EF 0%, #FDFBF7 100%);
+      color: #3D3A36;
+      overflow-x: hidden;
+    }
+    :root {
+      --clay: #C67C4E;
+      --moss: #5F7B5E;
+      --sand: #E8DCC6;
+      --deep-forest: #2C4B3A;
+      --shadow-soft: 0 20px 35px -10px rgba(0,0,0,0.05);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    /* navbar same as reference */
+    .navbar-custom {
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--deep-forest) !important;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #5B5A56 !important;
+      margin: 0 0.3rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--clay);
+      color: white !important;
+      transform: scale(1.02);
+    }
+    .btn-outline-mattress {
+      border: 2px solid var(--moss);
+      background: transparent;
+      border-radius: 60px;
+      color: var(--moss);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-outline-mattress:hover {
+      background: var(--moss);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-mattress {
+      background: var(--moss);
+      color: white;
+      border-radius: 60px;
+      padding: 12px 28px;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-mattress:hover {
+      background: var(--deep-forest);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -8px var(--moss);
+    }
+    /* Cart page specific styles */
+    .cart-container {
+      background: rgba(255,255,245,0.5);
+      border-radius: 48px;
+      backdrop-filter: blur(4px);
+      padding: 1.5rem;
+    }
+    .cart-item-card {
+      background: white;
+      border-radius: 32px;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 1rem;
+    }
+    .cart-item-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 24px;
+      background: var(--sand);
+    }
+    .quantity-selector {
+      display: inline-flex;
+      align-items: center;
+      background: #f3efe8;
+      border-radius: 60px;
+      padding: 0.3rem 0.8rem;
+      gap: 0.7rem;
+    }
+    .quantity-selector button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--clay);
+      transition: 0.1s;
+    }
+    .quantity-selector span {
+      min-width: 28px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .cart-summary {
+      background: white;
+      border-radius: 40px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 20px;
+    }
+    .empty-cart-zone {
+      text-align: center;
+      padding: 3rem;
+      background: rgba(255,255,245,0.7);
+      border-radius: 48px;
+    }
+    /* Modal custom design */
+    .error-modal .modal-content {
+      border-radius: 48px;
+      border: none;
+      background: #FEF9F0;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+    }
+    .error-modal .modal-header {
+      border-bottom: 1px solid #e2d4c0;
+      background: #FEF5E8;
+      border-radius: 48px 48px 0 0;
+      padding: 1.2rem 1.8rem;
+    }
+    .error-modal .modal-body {
+      padding: 2rem 1.8rem;
+      font-size: 1.1rem;
+    }
+    .error-icon {
+      font-size: 3.2rem;
+      color: #D67A3C;
+      background: #FFE9DC;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .navbar-custom { margin: 0 0.5rem; padding: 0.5rem 1rem; }
+      .cart-item-img { width: 70px; height: 70px; }
+      .cart-summary { margin-top: 1.5rem; position: static; }
+    }
+    footer a {
+      text-decoration: none !important;
+      color: #D4D8C8;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+    .btn-remove {
+      background: transparent;
+      border: none;
+      color: #b6a58b;
+      transition: 0.2s;
+    }
+    .btn-remove:hover {
+      color: var(--clay);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (exactly same style as reference, active cart) -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="/"><i class="fas fa-feather-alt me-2" style="color: #C67C4E;"></i>Lazy Beds</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navOrganic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navOrganic">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-mattress btn-sm rounded-pill"><i class="fas fa-cart-shopping me-1"></i> Cart <span id="cartCountUnique" class="badge bg-dark text-white ms-1">0</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- CART PAGE HEADER (eco-friendly + animations) -->
+<div class="container mt-4 pt-2">
+  <div class="d-flex flex-wrap align-items-center justify-content-between">
+    <div>
+      <h1 class="display-6 fw-bold" style="font-family: 'DM Serif Display', serif; color: var(--deep-forest);"><i class="fas fa-cart-shopping me-3" style="color: var(--clay);"></i>Your Sleep Sanctuary Cart</h1>
+      <p class="text-muted">Handcrafted organic goodness — change your mind, change the world.</p>
+    </div>
+    <a href="#" class="btn btn-outline-mattress rounded-pill"><i class="fas fa-leaf me-2"></i>Continue Shopping</a>
+  </div>
+</div>
+
+<!-- MAIN CART SECTION (dynamic) -->
+<div class="container my-5">
+  <div class="row g-4">
+    <!-- Cart Items Column -->
+    <div class="col-lg-8">
+      <div id="cartItemsContainer" class="cart-container">
+        <!-- dynamic cart items injected here -->
+        <div class="empty-cart-zone text-center py-5" id="emptyCartPlaceholder" style="display: none;">
+          <i class="fas fa-bed fa-3x mb-3" style="color: var(--sand);"></i>
+          <h4>Your cart is dreaming...</h4>
+          <p class="mb-3">Add a certified organic mattress and feel the pure comfort.</p>
+          <button class="btn btn-mattress" onclick="location.reload();">Explore Mattresses</button>
+        </div>
+        <div id="cartItemsList"></div>
+      </div>
+    </div>
+    
+    <!-- Order Summary Column -->
+    <div class="col-lg-4">
+      <div class="cart-summary">
+        <h5 class="fw-bold mb-3"><i class="fas fa-receipt me-2"></i>Order Summary</h5>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal</span>
+          <span id="subtotalValue">$0.00</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Shipping (Eco-friendly)</span>
+          <span class="text-success">Free</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+          <span>Estimated Tax</span>
+          <span id="taxValue">$0.00</span>
+        </div>
+        <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+          <span>Total</span>
+          <span id="totalValue">$0.00</span>
+        </div>
+        <button id="checkoutBtn" class="btn btn-mattress w-100 py-3 rounded-pill"><i class="fas fa-lock me-2"></i>Checkout →</button>
+        <p class="small text-muted text-center mt-3 mb-0"><i class="fas fa-seedling me-1"></i> 100% carbon-neutral delivery</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ECO-FRIENDLY BANNER (animation) -->
+<div class="container my-4">
+  <div class="bg-white rounded-5 p-3 text-center shadow-sm animate-fade" style="background: #EFF5EB;">
+    <i class="fas fa-globe-americas me-2" style="color: var(--moss);"></i> Every purchase plants a tree. <strong>Your cart = 1 tree planted.</strong>
+  </div>
+</div>
+
+<!-- FOOTER (exactly same as reference) -->
+<footer class="pt-5 pb-4 px-3 mt-5" style="background: #2A3A2A; color: #D4D8C8; border-radius: 40px 40px 0 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h5><i class="fas fa-feather-alt me-2"></i>Lazy Beds</h5>
+        <p class="small">Handcrafted organic mattresses. Made with love in Seattle, WA. Carbon-neutral since 2024.</p>
+        <p class="small mb-0"><i class="fas fa-map-pin me-2"></i> 456 Evergreen Way, Seattle, WA 98101</p>
+        <p class="small"><i class="fas fa-phone-alt me-2"></i> +1 (206) 555-8723</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="returns.html">Returns & Exchanges</a></li>
+          <li><a href="shipping.html">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-white-50">
+    <div class="text-center small">© 2025 Lazy Beds — Pure sleep, pure planet.</div>
+  </div>
+</footer>
+
+<!-- MODAL FOR CHECKOUT ERROR (exactly as requested: modal opens and shows specific error) -->
+<div class="modal fade error-modal" id="checkoutErrorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header justify-content-center border-0 pb-0">
+        <div class="error-icon mt-3">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+      </div>
+      <div class="modal-body pt-0">
+        <h4 class="fw-bold mb-3" style="color: #B16234;">Order Issue</h4>
+        <p class="mb-1 fs-5" style="color: #4f4a42;">"this order does not process right now"</p>
+        <div class="mt-3 bg-light rounded-4 p-2 small text-secondary">
+          <i class="fas fa-clock me-1"></i> Our eco-system is currently adjusting inventory. Please try again later.
+        </div>
+        <button type="button" class="btn btn-outline-mattress mt-4 px-4 rounded-pill" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- MOCK PRODUCT DATABASE (eco-friendly mattress shop) ----------
+  const productsDB = {
+    'mattress_organic_1': { id: 'mattress_organic_1', name: 'Evergreen Organic Latex', price: 1299, image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&auto=format', size: 'Queen' },
+    'mattress_wool_2': { id: 'mattress_wool_2', name: 'Heritage Wool + Cotton', price: 1599, image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=200&auto=format', size: 'King' },
+    'mattress_bamboo_3': { id: 'mattress_bamboo_3', name: 'Bamboo Breeze Hybrid', price: 1099, image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=200&auto=format', size: 'Twin XL' },
+    'pillow_set': { id: 'pillow_set', name: 'Adjustable Organic Pillow (Set of 2)', price: 189, image: 'https://images.unsplash.com/photo-1611224923853-80e023f4c771?w=200&auto=format', size: 'Standard' }
+  };
+
+  // Helper: Load cart from localStorage
+  function loadCart() {
+    let cart = localStorage.getItem('slumberCart');
+    if (cart) {
+      return JSON.parse(cart);
+    } else {
+      // Default demo cart items for showing some content (so that cart not empty initially)
+      const defaultCart = [
+        { productId: 'mattress_organic_1', quantity: 1, productData: productsDB['mattress_organic_1'] },
+        { productId: 'pillow_set', quantity: 2, productData: productsDB['pillow_set'] }
+      ];
+      localStorage.setItem('slumberCart', JSON.stringify(defaultCart));
+      return defaultCart;
+    }
+  }
+
+  // Save cart
+  function saveCart(cart) {
+    localStorage.setItem('slumberCart', JSON.stringify(cart));
+    renderCart();
+    updateCartBadge();
+  }
+
+  // Update badge on navbar
+  function updateCartBadge() {
+    const cart = loadCart();
+    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = document.getElementById('cartCountGlobal');
+    if (badge) badge.innerText = totalQty;
+  }
+
+  // Render cart items and totals
+  function renderCart() {
+    let cart = loadCart();
+    const container = document.getElementById('cartItemsList');
+    const emptyPlaceholder = document.getElementById('emptyCartPlaceholder');
+    const cartContainerDiv = document.querySelector('#cartItemsContainer');
+    
+    if (!cart || cart.length === 0) {
+      if (emptyPlaceholder) emptyPlaceholder.style.display = 'block';
+      if (container) container.innerHTML = '';
+      if (cartContainerDiv) cartContainerDiv.style.background = 'transparent';
+      updateTotals(0, 0);
+      return;
+    }
+    
+    if (emptyPlaceholder) emptyPlaceholder.style.display = 'none';
+    if (cartContainerDiv) cartContainerDiv.style.background = 'rgba(255,255,245,0.5)';
+    
+    let itemsHtml = '';
+    let subtotal = 0;
+    
+    cart.forEach((item, idx) => {
+      const product = item.productData || productsDB[item.productId];
+      if (!product) return;
+      const itemTotal = product.price * item.quantity;
+      subtotal += itemTotal;
+      
+      itemsHtml += `
+        <div class="cart-item-card p-3 p-md-4 d-flex flex-wrap align-items-center gap-3" data-item-idx="${idx}" data-product-id="${item.productId}">
+          <img src="${product.image}" class="cart-item-img" alt="${product.name}" loading="lazy">
+          <div class="flex-grow-1">
+            <h6 class="fw-bold mb-1">${product.name}</h6>
+            <div class="small text-secondary">Size: ${product.size} | Organic certified</div>
+            <div class="d-flex align-items-center mt-2 flex-wrap gap-3">
+              <div class="quantity-selector">
+                <button class="qty-decr" data-idx="${idx}">−</button>
+                <span class="item-qty">${item.quantity}</span>
+                <button class="qty-incr" data-idx="${idx}">+</button>
+              </div>
+              <button class="btn-remove remove-item" data-idx="${idx}"><i class="fas fa-trash-alt"></i> <span class="d-none d-md-inline">Remove</span></button>
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="fw-bold fs-6">$${itemTotal.toFixed(2)}</div>
+            <div class="small text-muted">$${product.price} each</div>
+          </div>
+        </div>
+      `;
+    });
+    
+    container.innerHTML = itemsHtml;
+    updateTotals(subtotal);
+    
+    // attach events for + - remove buttons
+    document.querySelectorAll('.qty-incr').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let idx = parseInt(btn.getAttribute('data-idx'));
+        changeQuantity(idx, 1);
+      });
+    });
+    document.querySelectorAll('.qty-decr').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let idx = parseInt(btn.getAttribute('data-idx'));
+        changeQuantity(idx, -1);
+      });
+    });
+    document.querySelectorAll('.remove-item').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let idx = parseInt(btn.getAttribute('data-idx'));
+        removeCartItem(idx);
+      });
+    });
+  }
+  
+  function changeQuantity(index, delta) {
+    let cart = loadCart();
+    if (!cart[index]) return;
+    let newQty = cart[index].quantity + delta;
+    if (newQty <= 0) {
+      cart.splice(index, 1);
+    } else {
+      cart[index].quantity = newQty;
+    }
+    saveCart(cart);
+  }
+  
+  function removeCartItem(index) {
+    let cart = loadCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+  }
+  
+  function updateTotals(subtotal) {
+    const subtotalElem = document.getElementById('subtotalValue');
+    const totalElem = document.getElementById('totalValue');
+    const taxElem = document.getElementById('taxValue');
+    const tax = subtotal * 0.095; // approx 9.5% eco tax rate
+    const total = subtotal + tax;
+    if (subtotalElem) subtotalElem.innerText = `$${subtotal.toFixed(2)}`;
+    if (taxElem) taxElem.innerText = `$${tax.toFixed(2)}`;
+    if (totalElem) totalElem.innerText = `$${total.toFixed(2)}`;
+  }
+  
+  // ---------- MODAL CHECKOUT LOGIC: exactly as requested: modal opens and shows the error: "this order does not process right now" ----------
+  function showCheckoutError() {
+    // Bootstrap modal instance
+    const modalElement = document.getElementById('checkoutErrorModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
+  }
+  
+  // Checkout click handler
+  function setupCheckout() {
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cart = loadCart();
+        // Even if cart is empty or not, we intentionally show the required error message
+        // as per spec: "error aaye this order does not prder right now krke kuch error show kr dena"
+        // always show modal with custom error text
+        showCheckoutError();
+      });
+    }
+  }
+  
+  // additional: maybe the error text inside modal is exactly: "this order does not process right now"
+  // already placed in modal body. But to be super accurate we ensure dynamic copy if needed
+  function ensureErrorText() {
+    const errorMsgSpan = document.querySelector('#checkoutErrorModal .modal-body p.fs-5');
+    if (errorMsgSpan) errorMsgSpan.innerText = '"this order does not process right now"';
+  }
+  
+  // Initial load and cart sync with any external changes (and add demo products)
+  document.addEventListener('DOMContentLoaded', () => {
+    // ensure we have at least one product demo (if localStorage empty, default cart)
+    let existingCart = localStorage.getItem('slumberCart');
+    if (!existingCart || JSON.parse(existingCart).length === 0) {
+      const demoCart = [
+        { productId: 'mattress_organic_1', quantity: 1, productData: productsDB['mattress_organic_1'] },
+        { productId: 'pillow_set', quantity: 1, productData: productsDB['pillow_set'] }
+      ];
+      localStorage.setItem('slumberCart', JSON.stringify(demoCart));
+    } else {
+      // migrate old cart items to include full product data if missing (legacy fix)
+      let cart = JSON.parse(existingCart);
+      let updated = false;
+      cart.forEach(item => {
+        if (!item.productData && productsDB[item.productId]) {
+          item.productData = productsDB[item.productId];
+          updated = true;
+        }
+      });
+      if (updated) localStorage.setItem('slumberCart', JSON.stringify(cart));
+    }
+    renderCart();
+    updateCartBadge();
+    setupCheckout();
+    ensureErrorText();
+    
+    // Additional: any "Continue Shopping" link will redirect to placeholder shop, but for demo we can just prevent default reload same page
+    const continueBtn = document.querySelector('.btn-outline-mattress.rounded-pill');
+    if (continueBtn) {
+      continueBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('🌿 Explore our organic mattress collection (demo: add more items to cart via dev tools)');
+      });
+    }
+  });
+  
+  // Clean and also handle potential window storage sync
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'slumberCart') {
+      renderCart();
+      updateCartBadge();
+    }
+  });
+  
+  // Helper to add external products (if needed for testing) but fine.
+  console.log('Cart page with checkout error modal ready — exact requirement: modal shows "this order does not process right now"');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

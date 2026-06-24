@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Returns & Exchanges | Lazy Beds Organic Mattresses</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <!-- Bootstrap + Icons + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #F9F6EF 0%, #FDFBF7 10%);
+      color: #3D3A36;
+      overflow-x: hidden;
+    }
+    :root {
+      --clay: #C67C4E;
+      --moss: #5F7B5E;
+      --sand: #E8DCC6;
+      --deep-forest: #2C4B3A;
+      --shadow-soft: 0 20px 35px -10px rgba(0,0,0,0.05);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    /* Navbar same as homepage */
+    .navbar-custom {
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--deep-forest) !important;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #5B5A56 !important;
+      margin: 0 0.3rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--clay);
+      color: white !important;
+      transform: scale(1.02);
+    }
+    .btn-outline-mattress {
+      border: 2px solid var(--moss);
+      background: transparent;
+      border-radius: 60px;
+      color: var(--moss);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-outline-mattress:hover {
+      background: var(--moss);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-mattress {
+      background: var(--moss);
+      color: white;
+      border-radius: 60px;
+      padding: 12px 28px;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-mattress:hover {
+      background: var(--deep-forest);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -8px var(--moss);
+    }
+    /* Returns page specific styles */
+    .returns-hero {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    .returns-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--deep-forest);
+    }
+    .returns-card {
+      background: white;
+      border-radius: 48px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .returns-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .returns-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--deep-forest);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .returns-card p, .returns-card li {
+      color: #4a4742;
+      line-height: 1.6;
+    }
+    .returns-card ul {
+      padding-left: 1.5rem;
+    }
+    .info-sidebar {
+      background: var(--sand);
+      border-radius: 48px;
+      padding: 1.8rem;
+      position: sticky;
+      top: 20px;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem;
+      background: white;
+      border-radius: 32px;
+      transition: var(--transition);
+    }
+    .info-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-soft);
+    }
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--sand);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--clay);
+    }
+    .last-updated {
+      background: #E8E0D4;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+    .steps-timeline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .step {
+      flex: 1;
+      min-width: 180px;
+      background: #F9F6EF;
+      border-radius: 32px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--clay);
+      color: white;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+    footer a {
+      text-decoration: none !important;
+      color: #D4D8C8;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .navbar-custom { margin: 0 0.5rem; padding: 0.5rem 1rem; }
+      .returns-hero h1 { font-size: 2.2rem; }
+      .returns-card { padding: 1.2rem; }
+      .info-sidebar { margin-top: 1.5rem; position: static; }
+      .steps-timeline { flex-direction: column; }
+    }
+    .badge-eco {
+      background: var(--moss);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as homepage) -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="/"><i class="fas fa-feather-alt me-2" style="color: #C67C4E;"></i>Lazy Beds</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navOrganic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navOrganic">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-mattress btn-sm rounded-pill"><i class="fas fa-cart-shopping me-1"></i> Cart <span id="cartCountUnique" class="badge bg-dark text-white ms-1">0</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<div class="returns-hero">
+  <h1><i class="fas fa-undo-alt me-3" style="color: var(--clay);"></i>Returns & Exchanges</h1>
+  <p class="lead">Sleep soundly with our 100-nights risk-free trial and simple returns process.</p>
+  <div class="last-updated mt-2"><i class="fas fa-calendar-alt me-2"></i>Last Updated: April 2, 2026</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container py-4">
+  <div class="row g-5">
+    <!-- Main Returns Content -->
+    <div class="col-lg-8">
+      <div class="returns-card">
+        <h2>Our Promise: 100-nights Sleep Trial</h2>
+        <p>At Lazy Beds, we believe you should only keep a mattress you truly love. That's why every mattress comes with a 100-nights risk-free trial. Sleep on it, test it, and if you're not completely satisfied, we'll make it right — with a full refund or exchange.</p>
+        
+        <div class="steps-timeline">
+          <div class="step">
+            <div class="step-number">1</div>
+            <strong>Try it at home</strong>
+            <p class="small mt-2">Sleep on your new mattress for at least 30 nights to allow your body to adjust.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <strong>Still not satisfied?</strong>
+            <p class="small mt-2">Contact us within 10 days of delivery to initiate a return or exchange.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <strong>We pick it up</strong>
+            <p class="small mt-2">We'll arrange free mattress pickup for donation or recycling.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <strong>Get your refund</strong>
+            <p class="small mt-2">Full refund issued within 14 days of pickup confirmation.</p>
+          </div>
+        </div>
+        
+        <h3>Returns Process</h3>
+        <p>Returning your Lazy Beds mattress is easy and completely free. Here's how it works:</p>
+        <ul>
+          <li><strong>Contact our support team</strong> — Email us at <strong>returns@lazybeds.com</strong> or call <strong>+1 (206) 555-8723</strong> to request a return authorization.</li>
+          <li><strong>Provide your order details</strong> — Have your order number and email address ready. We'll verify your purchase date.</li>
+          <li><strong>Schedule a pickup</strong> — We'll coordinate with a local charity or recycling partner to pick up the mattress from your home.</li>
+          <li><strong>Receive your refund</strong> — Once the mattress is picked up and inspected, we'll issue a full refund to your original payment method.</li>
+        </ul>
+        
+        <h3>Return Eligibility</h3>
+        <p>To qualify for a return or exchange, please ensure:</p>
+        <ul>
+          <li>Your return request is initiated within 10 days of the delivery date.</li>
+          <li>You have slept on the mattress for at least 30 nights (this allows proper break-in time).</li>
+          <li>The mattress is in good condition — no stains, burns, tears, or excessive damage.</li>
+          <li>The mattress is free from bed bugs, odors, or health hazards.</li>
+        </ul>
+        
+        <div class="bg-light rounded-4 p-3 my-3" style="background: #F0EBE2 !important;">
+          <i class="fas fa-leaf me-2" style="color: var(--clay);"></i>
+          <strong>Eco-Friendly Returns:</strong> Returned mattresses are never sent to landfills. We donate gently used mattresses to local shelters and recycle all materials whenever possible.
+        </div>
+        
+        <h3>Exchanges</h3>
+        <p>If you love the quality but want a different firmness level (Plush Soft, Medium, or Firm), we offer free exchanges within the 100-nights trial period. Here's how:</p>
+        <ul>
+          <li>Contact our team to request an exchange.</li>
+          <li>We'll ship your new mattress (free of charge).</li>
+          <li>Once your new mattress arrives, we'll schedule pickup of the original mattress.</li>
+          <li>You only pay the difference if exchanging to a higher-priced model. If exchanging to a lower-priced model, we'll refund the difference.</li>
+        </ul>
+        
+        <h3>What Items Are Returnable?</h3>
+        <ul>
+          <li><i class="fas fa-check-circle me-2" style="color: var(--moss);"></i> All Lazy Beds mattresses (Evergreen, Rainier, Olympic, Sanctuary, Cloud, Forest)</li>
+          <li><i class="fas fa-check-circle me-2" style="color: var(--moss);"></i> Mattress toppers (unused, in original packaging within 30 days)</li>
+          <li><i class="fas fa-times-circle me-2" style="color: #c67c4e;"></i> Pillows (final sale due to hygiene reasons — but we offer a 30-day comfort guarantee)</li>
+          <li><i class="fas fa-times-circle me-2" style="color: #c67c4e;"></i> Bed frames & foundations (returnable within 30 days, customer pays return shipping)</li>
+          <li><i class="fas fa-times-circle me-2" style="color: #c67c4e;"></i> Clearance or "Final Sale" items (non-returnable)</li>
+        </ul>
+        
+        <h3>Refund Timeline</h3>
+        <p>Once your return is approved and the mattress is picked up:</p>
+        <ul>
+          <li>Refunds are processed within 5-7 business days after pickup confirmation.</li>
+          <li>Funds typically appear in your account within 3-10 business days depending on your bank or credit card issuer.</li>
+          <li>Original shipping fees are non-refundable unless the return is due to a manufacturing defect or our error.</li>
+        </ul>
+        
+        <h3>Damaged or Defective Products</h3>
+        <p>If your mattress arrives damaged or has a manufacturing defect, please contact us within 7 days of delivery. We'll arrange a free replacement immediately and schedule pickup of the damaged item at no cost to you. Photographs may be requested to document the issue.</p>
+        
+        <h3>10-Year Warranty</h3>
+        <p>In addition to our 100-nights trial, every Lazy Beds mattress comes with a 10-year limited warranty covering:</p>
+        <ul>
+          <li>Sagging or body impressions greater than 1.5 inches.</li>
+          <li>Broken or loose zippers on the mattress cover.</li>
+          <li>Manufacturing defects in the foam, latex, or coil system.</li>
+        </ul>
+        <p>The warranty does not cover normal wear and tear, comfort preference, stains, burns, or damage from improper handling. For warranty claims, contact us with your order number and photos of the issue.</p>
+        
+        <h3>International Returns</h3>
+        <p>Currently, we only ship to the contiguous United States. For customers in Alaska or Hawaii, please contact our support team for specific return instructions. Return shipping costs for non-contiguous states may apply.</p>
+        
+        <h3>Contact Returns Department</h3>
+        <p>For all return and exchange inquiries, please reach out to our dedicated returns team:</p>
+        <p>
+          <i class="fas fa-envelope me-2" style="color: var(--clay);"></i> <strong>Email:</strong> returns@lazybeds.com<br>
+          <i class="fas fa-phone-alt me-2" style="color: var(--clay);"></i> <strong>Phone:</strong> +1 (206) 555-8723 (ext. 2 for returns)<br>
+          <i class="fas fa-clock me-2" style="color: var(--clay);"></i> <strong>Hours:</strong> Mon-Fri 9am-5pm PST
+        </p>
+        
+        <div class="mt-4 pt-3 border-top">
+          <small class="text-muted">Lazy Beds is committed to your complete satisfaction. Our no-hassle return policy is designed to give you peace of mind while you discover the most comfortable sleep of your life — naturally.</small>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar with contact info -->
+    <div class="col-lg-4">
+      <div class="info-sidebar">
+        <h5 class="fw-bold mb-4"><i class="fas fa-leaf me-2" style="color: var(--clay);"></i>Get in Touch</h5>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div><strong>Studio Hours</strong><br>Mon–Fri: 10am – 6pm<br>Sat: 11am – 4pm</div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+          <div><strong>Call or Text</strong><br>+1 (206) 555-8723</div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div><strong>Email Us</strong><br>support@lazybeds.com</div>
+        </div>
+        
+        <hr class="my-3">
+        
+        <div class="text-center mt-3">
+          <i class="fas fa-tree fa-2x mb-2" style="color: var(--clay);"></i>
+          <p class="small mb-0">Visit our Seattle studio to experience the comfort of organic sleep.</p>
+          <a href="https://www.google.com/maps?q=Seattle+WA+98101" class="btn btn-outline-mattress btn-sm mt-2 rounded-pill">Get Directions →</a>
+        </div>
+        
+        <div class="mt-4 pt-2 text-center">
+          <span class="badge-eco"><i class="fas fa-recycle me-1"></i> Eco-Friendly Returns</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER (same as homepage) -->
+<footer class="pt-5 pb-4 px-3 mt-5" style="background: #2A3A2A; color: #D4D8C8; border-radius: 40px 40px 0 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h5><i class="fas fa-feather-alt me-2"></i>Lazy Beds</h5>
+        <p class="small">Handcrafted organic mattresses. Made with love in Seattle, WA. Carbon-neutral since 2024.</p>
+        <p class="small mb-0"><i class="fas fa-map-pin me-2"></i> 456 Evergreen Way, Seattle, WA 98101</p>
+        <p class="small"><i class="fas fa-phone-alt me-2"></i> +1 (206) 555-8723</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="returns.html">Returns & Exchanges</a></li>
+          <li><a href="shipping.html">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-white-50">
+    <div class="text-center small">© 2025 Lazy Beds — Pure sleep, pure planet.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

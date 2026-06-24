@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shipping Information | Lazy Beds Organic Mattresses</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <!-- Bootstrap + Icons + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #F9F6EF 0%, #FDFBF7 100%);
+      color: #3D3A36;
+      overflow-x: hidden;
+    }
+    :root {
+      --clay: #C67C4E;
+      --moss: #5F7B5E;
+      --sand: #E8DCC6;
+      --deep-forest: #2C4B3A;
+      --shadow-soft: 0 20px 35px -10px rgba(0,0,0,0.05);
+      --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    /* Navbar same as homepage */
+    .navbar-custom {
+      background: rgba(253, 251, 247, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 0 0 32px 32px;
+      padding: 0.6rem 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: var(--deep-forest) !important;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #5B5A56 !important;
+      margin: 0 0.3rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      background: var(--clay);
+      color: white !important;
+      transform: scale(1.02);
+    }
+    .btn-outline-mattress {
+      border: 2px solid var(--moss);
+      background: transparent;
+      border-radius: 60px;
+      color: var(--moss);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-outline-mattress:hover {
+      background: var(--moss);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-mattress {
+      background: var(--moss);
+      color: white;
+      border-radius: 60px;
+      padding: 12px 28px;
+      font-weight: 600;
+      border: none;
+      transition: var(--transition);
+    }
+    .btn-mattress:hover {
+      background: var(--deep-forest);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -8px var(--moss);
+    }
+    /* Shipping page specific styles */
+    .shipping-hero {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    .shipping-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--deep-forest);
+    }
+    .shipping-card {
+      background: white;
+      border-radius: 48px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .shipping-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+    .shipping-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--deep-forest);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .shipping-card p, .shipping-card li {
+      color: #4a4742;
+      line-height: 1.6;
+    }
+    .shipping-card ul {
+      padding-left: 1.5rem;
+    }
+    .info-sidebar {
+      background: var(--sand);
+      border-radius: 48px;
+      padding: 1.8rem;
+      position: sticky;
+      top: 20px;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem;
+      background: white;
+      border-radius: 32px;
+      transition: var(--transition);
+    }
+    .info-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-soft);
+    }
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--sand);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--clay);
+    }
+    .last-updated {
+      background: #E8E0D4;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+    .shipping-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .shipping-option {
+      flex: 1;
+      min-width: 200px;
+      background: #F9F6EF;
+      border-radius: 32px;
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid #e8e0d4;
+    }
+    .shipping-option i {
+      font-size: 2rem;
+      color: var(--clay);
+      margin-bottom: 0.8rem;
+    }
+    .shipping-option .price {
+      font-weight: bold;
+      color: var(--moss);
+      font-size: 1.2rem;
+    }
+    .state-list {
+      columns: 2;
+      column-gap: 2rem;
+    }
+    .state-list li {
+      margin-bottom: 0.3rem;
+    }
+    footer a {
+      text-decoration: none !important;
+      color: #D4D8C8;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .navbar-custom { margin: 0 0.5rem; padding: 0.5rem 1rem; }
+      .shipping-hero h1 { font-size: 2.2rem; }
+      .shipping-card { padding: 1.2rem; }
+      .info-sidebar { margin-top: 1.5rem; position: static; }
+      .state-list { columns: 1; }
+      .shipping-grid { flex-direction: column; }
+    }
+    .badge-eco {
+      background: var(--moss);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+    .tracking-input {
+      border-radius: 60px;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid #e2dcd0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (same as homepage) -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="/"><i class="fas fa-feather-alt me-2" style="color: #C67C4E;"></i>Lazy Beds</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navOrganic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navOrganic">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+        </ul>
+        <a href="cart.html" class="btn btn-outline-mattress btn-sm rounded-pill"><i class="fas fa-cart-shopping me-1"></i> Cart <span id="cartCountUnique" class="badge bg-dark text-white ms-1">0</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<div class="shipping-hero">
+  <h1><i class="fas fa-truck me-3" style="color: var(--clay);"></i>Shipping Information</h1>
+  <p class="lead">Free shipping on all mattresses — delivered right to your door with eco-friendly packaging.</p>
+  <div class="last-updated mt-2"><i class="fas fa-calendar-alt me-2"></i>Last Updated: April 2, 2026</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container py-4">
+  <div class="row g-5">
+    <!-- Main Shipping Content -->
+    <div class="col-lg-8">
+      <div class="shipping-card">
+        <h2>Free Shipping on Every Mattress</h2>
+        <p>At Lazy Beds, we believe that sustainable sleep should be accessible to everyone. That's why we offer <strong>free standard shipping</strong> on all mattress orders to the contiguous United States. No hidden fees, no surprise charges — just pure comfort delivered to your door.</p>
+        
+        <div class="shipping-grid">
+          <div class="shipping-option">
+            <i class="fas fa-box-open"></i>
+            <h6>Standard Shipping</h6>
+            <p class="small">5-7 business days</p>
+            <span class="price">FREE</span>
+          </div>
+          <div class="shipping-option">
+            <i class="fas fa-rocket"></i>
+            <h6>Express Shipping</h6>
+            <p class="small">2-3 business days</p>
+            <span class="price">$49</span>
+          </div>
+          <div class="shipping-option">
+            <i class="fas fa-calendar-day"></i>
+            <h6>White Glove Delivery</h6>
+            <p class="small">Schedule a date + setup</p>
+            <span class="price">$199</span>
+          </div>
+        </div>
+        
+        <h3>Shipping Destinations</h3>
+        <p>We currently ship to all 50 United States. Here's what you need to know for each region:</p>
+        
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <h4><i class="fas fa-check-circle me-2" style="color: var(--moss); font-size: 1.2rem;"></i> Contiguous US (48 States)</h4>
+            <p>Free standard shipping on all mattress orders. Delivery typically takes 5-7 business days from the date of purchase. You'll receive tracking information via email once your order ships.</p>
+          </div>
+          <div class="col-md-6">
+            <h4><i class="fas fa-check-circle me-2" style="color: var(--moss); font-size: 1.2rem;"></i> Alaska & Hawaii</h4>
+            <p>Shipping to AK and HI is available for an additional fee ($149 - $249 depending on location). Delivery typically takes 7-14 business days. Please contact our support team for a quote before ordering.</p>
+          </div>
+        </div>
+        
+        <h3 class="mt-4">Delivery Process</h3>
+        <p>When you order a Lazy Beds mattress, here's what to expect:</p>
+        <ul>
+          <li><strong>Order Confirmation:</strong> You'll receive an email confirmation immediately after placing your order.</li>
+          <li><strong>Processing Time:</strong> Orders are processed within 1-2 business days. Our mattresses are handcrafted in Seattle, so please allow extra time during peak seasons.</li>
+          <li><strong>Shipping Notification:</strong> Once your order ships, you'll receive a tracking number via email. You can track your delivery directly on the carrier's website.</li>
+          <li><strong>Delivery Day:</strong> Most mattresses are delivered in a box compressed to about 1/3 of its original size. Simply bring the box inside, unroll your mattress, and watch it expand to full size within 24-48 hours.</li>
+        </ul>
+        
+        <div class="bg-light rounded-4 p-3 my-3" style="background: #F0EBE2 !important;">
+          <i class="fas fa-leaf me-2" style="color: var(--clay);"></i>
+          <strong>Eco-Friendly Packaging:</strong> Our mattresses are shipped in recyclable cardboard boxes with minimal plastic. We've eliminated styrofoam and use only biodegradable materials whenever possible.
+        </div>
+        
+        <h3>White Glove Delivery Service</h3>
+        <p>For an additional $199, our White Glove service includes:</p>
+        <ul>
+          <li>Delivery on your preferred date (within 5-14 days of purchase).</li>
+          <li>In-home setup — we'll bring the mattress to your bedroom of choice.</li>
+          <li>Unpacking and placement on your bed frame or foundation.</li>
+          <li>Removal of all packaging materials for recycling.</li>
+          <li>Removal of your old mattress (available for an additional $50).</li>
+        </ul>
+        <p>White Glove service is currently available in Seattle, Portland, San Francisco, Los Angeles, Denver, Chicago, Austin, New York, Boston, and Washington DC metro areas. Contact us to check availability in your city.</p>
+        
+        <h3>Tracking Your Order</h3>
+        <p>Once your order ships, you'll receive a tracking number via email. You can also track your order by entering your order number below:</p>
+        <div class="row g-2 mt-2">
+          <div class="col-8">
+            <input type="text" class="tracking-input" placeholder="Enter order number (e.g., SG-12345)">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-outline-mattress w-100">Track Order</button>
+          </div>
+        </div>
+        <p class="small text-muted mt-2">*Demo tracking — enter any order number to see a sample tracking simulation.</p>
+        
+        <h3>Shipping Restrictions</h3>
+        <p>Please note the following restrictions:</p>
+        <ul>
+          <li>We currently do not ship to PO Boxes, APO/FPO addresses, or US territories (Puerto Rico, Guam, US Virgin Islands).</li>
+          <li>All shipments require a physical street address and a signature upon delivery for security.</li>
+          <li>If you live in a building without a freight elevator, please let us know — additional fees may apply for stair carries.</li>
+          <li>During extreme weather conditions (winter storms, hurricanes), delivery may be delayed. We'll notify you if this occurs.</li>
+        </ul>
+        
+        <h3>Delivery Time Estimates by Region</h3>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <p><strong>West Coast</strong><br>WA, OR, CA, NV, AZ, ID — 3-5 business days</p>
+            <p><strong>Southwest</strong><br>TX, NM, OK, CO, UT — 5-7 business days</p>
+            <p><strong>Midwest</strong><br>IL, IN, OH, MI, WI, MN, MO, KS, NE, IA — 5-7 business days</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Southeast</strong><br>FL, GA, AL, SC, NC, TN, MS, LA, AR — 6-8 business days</p>
+            <p><strong>Northeast</strong><br>NY, NJ, PA, MA, CT, RI, NH, VT, ME, MD, DE, DC, VA, WV — 6-8 business days</p>
+            <p><strong>Alaska & Hawaii</strong><br>7-14 business days (additional fees apply)</p>
+          </div>
+        </div>
+        
+        <h3>International Shipping</h3>
+        <p>At this time, we only ship within the United States. We're working on expanding to Canada and select international markets — sign up for our newsletter to be notified when international shipping becomes available.</p>
+        
+        <h3>Damaged or Lost Packages</h3>
+        <p>If your mattress arrives damaged or appears tampered with, please:</p>
+        <ul>
+          <li>Take photos of the damage before opening the box.</li>
+          <li>Contact us within 48 hours of delivery at <strong>shipping@lazybeds.com</strong>.</li>
+          <li>We'll arrange a free replacement and pickup of the damaged item.</li>
+        </ul>
+        <p>For lost packages, please contact the carrier directly with your tracking number. If the issue isn't resolved within 5 business days, our team will step in to assist.</p>
+        
+        <h3>Questions About Shipping?</h3>
+        <p>Our shipping team is here to help Monday through Friday, 9am-5pm PST:</p>
+        <p>
+          <i class="fas fa-envelope me-2" style="color: var(--clay);"></i> <strong>Email:</strong> shipping@lazybeds.com<br>
+          <i class="fas fa-phone-alt me-2" style="color: var(--clay);"></i> <strong>Phone:</strong> +1 (206) 555-8723 (ext. 3 for shipping)<br>
+          <i class="fas fa-comment-dots me-2" style="color: var(--clay);"></i> <strong>Live Chat:</strong> Available on our website
+        </p>
+        
+        <div class="mt-4 pt-3 border-top">
+          <small class="text-muted">Lazy Beds is committed to sustainable, reliable shipping. We partner with碳中和 carriers and offset 100% of our shipping emissions through reforestation projects.</small>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar with contact info -->
+    <div class="col-lg-4">
+      <div class="info-sidebar">
+        <h5 class="fw-bold mb-4"><i class="fas fa-leaf me-2" style="color: var(--clay);"></i>Get in Touch</h5>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div><strong>Studio Hours</strong><br>Mon–Fri: 10am – 6pm<br>Sat: 11am – 4pm</div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+          <div><strong>Call or Text</strong><br>+1 (206) 555-8723</div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div><strong>Email Us</strong><br>support@lazybeds.com</div>
+        </div>
+        
+        <hr class="my-3">
+        
+        <div class="text-center mt-3">
+          <i class="fas fa-tree fa-2x mb-2" style="color: var(--clay);"></i>
+          <p class="small mb-0">Visit our Seattle studio to experience the comfort of organic sleep.</p>
+          <a href="https://www.google.com/maps?q=Seattle+WA+98101" class="btn btn-outline-mattress btn-sm mt-2 rounded-pill">Get Directions →</a>
+        </div>
+        
+        <div class="mt-4 pt-2 text-center">
+          <span class="badge-eco"><i class="fas fa-globe-americas me-1"></i> Carbon-Neutral Shipping</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER (same as homepage) -->
+<footer class="pt-5 pb-4 px-3 mt-5" style="background: #2A3A2A; color: #D4D8C8; border-radius: 40px 40px 0 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mb-4">
+        <h5><i class="fas fa-feather-alt me-2"></i>Lazy Beds</h5>
+        <p class="small">Handcrafted organic mattresses. Made with love in Seattle, WA. Carbon-neutral since 2024.</p>
+        <p class="small mb-0"><i class="fas fa-map-pin me-2"></i> 456 Evergreen Way, Seattle, WA 98101</p>
+        <p class="small"><i class="fas fa-phone-alt me-2"></i> +1 (206) 555-8723</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <h6>Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="returns.html">Returns & Exchanges</a></li>
+          <li><a href="shipping.html">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-white-50">
+    <div class="text-center small">© 2025 Lazy Beds — Pure sleep, pure planet.</div>
+  </div>
+</footer>
+
+<script>
+  // Simple demo tracking functionality
+  document.querySelector('.btn-outline-mattress.w-100')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const orderInput = document.querySelector('.tracking-input');
+    const orderNumber = orderInput?.value.trim();
+    if (!orderNumber) {
+      alert('Please enter an order number to track.');
+    } else {
+      alert(`🔍 Tracking for order ${orderNumber}:\n\nYour Lazy Beds mattress has shipped!\nStatus: In transit to your location\nEstimated delivery: 3-5 business days\n\nCarrier: EcoFreight (Carbon-neutral)\nTracking #: ECO-${Math.floor(Math.random() * 1000000)}\n\nFor real updates, please check your email or contact our support team.`);
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
